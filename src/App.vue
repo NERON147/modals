@@ -7,7 +7,11 @@
         <div class="container">
           <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Show First modal</button>
 
-         <modal title="First modal" v-if="modalFirst"></modal>
+         <modal 
+         title="First modal" 
+         v-if="modalFirst"
+         @close="modalFirst = !modalFirst">
+         </modal>
         </div>
       </section>
     </div>
