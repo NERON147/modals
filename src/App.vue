@@ -9,9 +9,26 @@
 
          <modal 
          title="First modal" 
-         v-if="modalFirst"
+         v-show="modalFirst"
          @close="modalFirst = !modalFirst">
+         <div slot="body">
+          <p>Text</p>
+          <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Well done</button>
+         </div>
          </modal>
+
+         <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Show First modal</button>
+
+         <modal 
+         title="First modal" 
+         v-show="modalFirst"
+         @close="modalFirst = !modalFirst">
+         <div slot="body">
+          <p>Text</p>
+          <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Well done</button>
+         </div>
+         </modal>
+         
         </div>
       </section>
     </div>

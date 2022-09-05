@@ -1,4 +1,5 @@
 <template>
+<transition name="modal">
   <div class="modal__wrapper" @click="$emit('close')">
     <div class="modal-content" @click.stop="">
 
@@ -10,11 +11,11 @@
 
       <!-- body -->
       <div class="modal-body">
-
+        <slot name="body"></slot>
     </div>
   </div>
   </div>
-
+</transition>
 </template>
 
 <script>
@@ -36,6 +37,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.modal-enter, modal-leave-active {
+  opacity: 0;
+}
+
+.modal-active, .modal-content,
+.modal-leave-active, .modal-content {
+  transform: scale(1.2);
+}
 
 .modal__wrapper{
   display: flex;
