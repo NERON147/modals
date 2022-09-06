@@ -1,7 +1,7 @@
 <template>
 <transition name="modal">
   <div class="modal__wrapper" @click="$emit('close')">
-    <div class="modal-content" @click.stop="">
+    <div class="modal-content" @click.stop>
 
       <!-- header -->
       <div class="modal-header">
@@ -55,7 +55,7 @@ export default {
   top: 0;
   bottom: 0;
   left: 0;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
   right: 0;
   z-index: 998;
   background-color: rgba(00,00,00,.48);
@@ -67,7 +67,7 @@ export default {
   padding: 20px 18px;
   background-color: #fff;
   border: 1px solid #dcdfe6;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   border-radius: 8px;
   z-index: 999;
   overflow: hidden;
