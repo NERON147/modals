@@ -21,9 +21,7 @@
         <div class="form-item" :class="{ errorInput: $v.email.$error }">
           <label>Email:</label>
           <p class="errorText" v-if="$v.email.required">Field is required!</p>
-          <p class="errorText" v-if="$v.email.email">
-            Email is not correct!
-          </p>
+          <p class="errorText" v-if="$v.email.email">Email is not correct!</p>
 
           <input
             v-model="email"
@@ -31,7 +29,51 @@
             @change="$v.email.$touch()"
           />
         </div>
-    <!-- button -->
+
+        <!-- password -->
+        <div class="form-item" :class="{ errorInput: $v.password.$error }">
+          <label>Password:</label>
+          <p class="errorText" v-if="$v.password.required">
+            Field is required!
+          </p>
+          <p class="errorText" v-if="$v.password.minLength">
+            Password must have at least 6!
+          </p>
+
+          <input
+            type="password"
+            v-model="password"
+            :class="{ error: $v.password.$error }"
+            @change="$v.password.$touch()"
+          />
+        </div>
+
+        <!-- repeat password -->
+
+        <div class="form-item" :class="{ errorInput: $v.password.$error }">
+          <label>Password:</label>
+          <p class="errorText" v-if="$v.password.required">
+            Field is required!
+          </p>
+          <p class="errorText" v-if="$v.password.minLength">
+            Password must have at least 6!
+          </p>
+
+          <input
+            type="password"
+            v-model="passwordRepeat"
+            :class="{ error: $v.password.$error }"
+            @change="$v.password.$touch()"
+          />
+        </div>
+        <p
+          v-if="password != passwordRepeat"
+          @change="$v.password.$touch()"
+          style="color: red"
+        >
+          Password doesn't match
+        </p>
+        <!-- button -->
 
         <button class="btn btnPrimary">Well done</button>
       </form>
@@ -51,6 +93,8 @@ export default {
     return {
       name: "",
       email: "",
+      password: "",
+      passwordRepeat: "",
     };
   },
   validations: {
@@ -62,23 +106,32 @@ export default {
       required,
       email,
     },
+    password: {
+      required,
+      minLength: minLength(6),
+    },
   },
   methods: {
     onSubmit() {
-        this.$v.$touch()
-        if(!this.$v.$invalid) {
-            const user = {
-                name: this.name,
-                email: this.email
-            }
-            console.log(user)
-            this.name = ''
-            this.email = ''
-            this.$v.$reset()
-            this.$emit('close')
+      this.$v.$touch();
+      if (this.password == this.passwordRepeat) {
+        if (!this.$v.$invalid) {
+          const user = {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+          };
+          console.log(user);
+          this.name = "";
+          this.email = "";
+          this.password = "";
+          this.passwordRepeat = "";
+          this.$v.$reset();
+          this.$emit("close");
         }
-    }
-  }
+      }
+    },
+  },
 };
 </script>
 
